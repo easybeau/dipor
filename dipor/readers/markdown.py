@@ -1,10 +1,7 @@
 import markdown
-import os
 
-
-class BaseReader():
-    def __str__(self):
-        return "Base Reader for Dipor"
+from ..markdown_extensions.class_wrapper import AddDivClassExtension
+from .base import BaseReader
 
 
 class MarkdownReader(BaseReader):
@@ -18,7 +15,7 @@ class MarkdownReader(BaseReader):
 
     def get_context(self):
         md_file = self.read_md()
-        md = markdown.Markdown(extensions=['meta'])
+        md = markdown.Markdown(extensions=['meta', 'codehilite', AddDivClassExtension()])
         ctx = {}
         md_content = md.convert(md_file)
         if md_content:
