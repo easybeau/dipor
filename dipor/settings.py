@@ -5,3 +5,5 @@ INITIALL_APP = '/'
 EXTENSIONS = ['meta']
 
 FILE_ORMATS_ALLOWED = ['md', 'json']
+
+PRETTIFY = True

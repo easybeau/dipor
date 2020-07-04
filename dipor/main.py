@@ -6,16 +6,19 @@ import pathlib
 import settings
 
 from dipor.readers.markdown import MarkdownReader
+from dipor.utils.context import get_structural_context
 from jinja_changes import RelEnvironment, SilentUndefined
+from dipor.jinja.extensions import RoutesExtension
 
 RESERVED_PATHS = ['_components', '_assets', '_branches']
 
-            
+
+STRUCTURAL_CTX = get_structural_context(settings.CONTENT_ROOT)
+
 def get_current_context(dir_path):
     extensions_tuple = ('.md', '.json')
     md_files_for_app = []
     current_ctx = {}
-    # md = markdown.Markdown(extensions=['meta'])
     for file in listdir(dir_path):
         if file.endswith(extensions_tuple):
             min_file_name = file.strip().lower().split(".")[0]
@@ -27,7 +30,7 @@ def get_current_context(dir_path):
 
 def load_template(tpl_path):
     tpl_path = tpl_path[3:]
-    env = RelEnvironment(loader=FileSystemLoader('src'), undefined=SilentUndefined)
+    env = RelEnvironment(loader=FileSystemLoader('src'), undefined=SilentUndefined, extensions=[RoutesExtension])
     env.globals.update(zip=zip)
     template =  env.get_template(tpl_path)
     return template
@@ -62,6 +65,7 @@ def get_content_branch_dirs(current_app_path):
 
 
 def get_total_context(initial_context, current_context):
+    global STRUCTURAL_CTX
     current_common_ctx = {'common': {}}
     if initial_context.get('common'):
         current_common_ctx['common'].update(initial_context['common'])
@@ -71,6 +75,7 @@ def get_total_context(initial_context, current_context):
     total_ctx.update(initial_context)
     total_ctx.update(current_context)
     total_ctx.update(current_common_ctx)
+    total_ctx['_routes'] = STRUCTURAL_CTX   
 
     return total_ctx
 
