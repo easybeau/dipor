@@ -19,6 +19,4 @@ setup(
         'console_scripts': [
             'dipor=dipor.main:main'
         ]
-    },
-    py_modules=['settings.py']
-)
+    })

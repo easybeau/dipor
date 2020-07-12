@@ -3,7 +3,7 @@ from jinja2 import PackageLoader, FileSystemLoader
 from os import listdir
 import os
 import pathlib
-import settings
+from dipor import settings
 
 from dipor.readers.markdown import MarkdownReader
 from dipor.utils.context import get_structural_context
