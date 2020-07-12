@@ -20,5 +20,5 @@ setup(
             'dipor=dipor.main:main'
         ]
     },
-    py_modules=['dipor/settings.py']
+    py_modules=['settings.py']
 )
