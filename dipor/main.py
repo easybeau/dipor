@@ -133,10 +133,13 @@ def main(current_app_path, current_app_name, current_content_path, initial_conte
     return
 
 
-if __name__ == "__main__":
+def mainap():
     allowed_extensions = ['md', 'json']
     print("--------- dipor is starting ---------")
     main(settings.SOURCE_ROOT, settings.INITIALL_APP, settings.CONTENT_ROOT)
     print("--------- dipor is ending ---------")
 
     # todo: make subapps names availale to context
+
+if __name__ == '__main__':
+    mainap()

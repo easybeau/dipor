@@ -9,3 +9,4 @@ def main():
     src_root = os.path.dirname(dipor.__file__)
     shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dest_root, 'content'))
     shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dest_root, 'content'))
+    dipor.main.mainap()
