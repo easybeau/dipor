@@ -8,5 +8,5 @@ def main():
     dest_root = pathlib.Path().absolute()
     src_root = os.path.dirname(dipor.__file__)
     shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dest_root, 'content'))
-    shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dest_root, 'content'))
+    shutil.copytree(os.path.join(src_root, 'src'), os.path.join(dest_root, 'src'))
     dipor.main.mainap()
