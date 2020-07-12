@@ -7,7 +7,7 @@ from dipor import settings
 
 from dipor.readers.markdown import MarkdownReader
 from dipor.utils.context import get_structural_context
-from jinja_changes import RelEnvironment, SilentUndefined
+from dipor.jinja_changes import RelEnvironment, SilentUndefined
 from dipor.jinja.extensions import RoutesExtension
 
 RESERVED_PATHS = ['_components', '_assets', '_branches']
