@@ -17,6 +17,6 @@ setup(
     install_requires = ['markdown==3.2.2', 'Jinja2==2.11.2', 'html5print==0.1.2', 'Pygments==2.6.1'],
     entry_points={
         'console_scripts': [
-            'dipor=dipor.cmd.start:main'
+            'dipor quickstart=dipor.cmd.start:main'
         ]
     })
