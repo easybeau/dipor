@@ -17,10 +17,10 @@ def runserver():
             else:
                 if os.path.isfile(os.path.join(web_dir, path+".html")):
                     print(os.path.join(web_dir, path+".html"))
-                    self.path = os.path.join(web_dir, path+".html")
+                    self.path = "ndex.html"
                 elif os.path.isfile(os.path.join(path, "index.html")):
                     print(os.path.join(web_dir, path, "index.html"))
-                    self.path = os.path.join(path, "index.html")
+                    self.path = "index.html"
                 
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
     handler = CustomHttpRequestHandler
