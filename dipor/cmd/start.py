@@ -98,9 +98,9 @@ def call_action(args):
                         'use': use_theme,
                         'dev': soft_build,
                         'build': hard_build}
-    action = args[1]    # when only dipor is given, what should we do?
+    action = args[0]    # when only dipor is given, what should we do?
     action_fn = ARGS_ACTIONS_MAP.get(action, default_action)
-    action_fn()
+    action_fn(args[1:])
 
 
 def main():
