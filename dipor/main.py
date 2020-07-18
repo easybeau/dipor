@@ -143,3 +143,4 @@ def builder_main(current_app_path, current_content_path, initial_context={'commo
     global content_path
     src_path = current_app_path
     content_path = current_content_path
+    builder(current_app_path, current_content_path)
