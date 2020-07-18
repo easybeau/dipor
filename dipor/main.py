@@ -95,7 +95,8 @@ def builder(current_app_path, current_content_path, initial_context={'common': {
             main_template = os.path.join(current_app_path, 'index.html')
             if os.path.isfile(main_template):
                 loaded_tpl = load_template(main_template)
-                current_sub_path = current_app_path[3:].strip("/")
+                current_sub_path = os.path.relpath(current_app_path, src_path)
+                # current_sub_path = current_app_path[3:].strip("/")
                 current_sub_path = current_sub_path.replace("_branches", "").strip("/")
                 res_dir = os.path.join('public', current_sub_path)
                 pathlib.Path(res_dir).mkdir(parents=True, exist_ok=True) 
