@@ -58,6 +58,8 @@ def get_subapps(current_path):
 
 def get_content_branch_dirs(current_app_path):
     branch_dirs = []
+    print("!!!!!!")
+    print(current_app_path)
     current_content_path = 'content' + current_app_path[3:]
     for file in os.listdir(current_content_path):
         if os.path.isdir(os.path.join(current_content_path, file)):
