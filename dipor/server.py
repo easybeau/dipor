@@ -19,7 +19,7 @@ def runserver(public_folder):
                     print(path, "-->", os.path.join(self.public, file, "index.html"))
                     self.path = os.path.join(self.public, file, "index.html")
 
-                    return http.server.SimpleHTTPRequestHandler.do_GET(self)
+                return http.server.SimpleHTTPRequestHandler.do_GET(self)
     handler = CustomHttpRequestHandler
     socketserver.TCPServer.allow_reuse_address = True
 
