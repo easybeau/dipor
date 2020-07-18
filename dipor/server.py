@@ -14,6 +14,7 @@ def runserver(public_folder):
         def do_GET(self):
             path = self.path.strip('/')
             for file in listdir(self.public):
+                print(file, ":", path)
                 if file == path and os.path.isdir(os.path.join(self.public, file)):
                     print(path, "-->", os.path.join(self.public, file, "index.html"))
                     self.path = os.path.join(self.public, file, "index.html")
