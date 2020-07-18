@@ -8,21 +8,16 @@ PORT = 5050
 def runserver():
     web_dir = os.path.join(os.path.dirname(__file__), 'public')
     os.chdir(web_dir)
-    class CustomHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
-        def __init__(self, *args, **kwargs):
-            self.public = public_folder
-            super(CustomHttpRequestHandler, self).__init__(*args, **kwargs)
-            
+    class CustomHttpRequestHandler(http.server.SimpleHTTPRequestHandler):            
         def do_GET(self):
             path = self.path.strip('/')
             if path == "":
                 self.path = os.path.join(self.public, 'index.html')
-                # return http.server.SimpleHTTPRequestHandler.do_GET(self)
-
-            for file in listdir(self.public):
-                if file == path and os.path.isdir(os.path.join(self.public, file)):
-                    print(path, "-->", os.path.join(self.public, file, "index.html"))
-                    self.path = os.path.join(self.public, file, "index.html")
+            else:
+                for file in listdir(self.public):
+                    if file == path and os.path.isdir(os.path.join(self.public, file)):
+                        print(path, "-->", os.path.join(self.public, file, "index.html"))
+                        self.path = os.path.join(self.public, file, "index.html")
 
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
     handler = CustomHttpRequestHandler
