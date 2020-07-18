@@ -34,7 +34,7 @@ def load_template(tpl_path):
     print(tpl_path)
     env = RelEnvironment(loader=FileSystemLoader(Path(os.path.dirname(tpl_path)).parent, 'src'), undefined=SilentUndefined, extensions=[RoutesExtension])
     env.globals.update(zip=zip)
-    template =  env.get_template(tpl_path)
+    template =  env.get_template('index.html')      # hard coded pls
     return template
 
 def get_templates_for_app(appname):
