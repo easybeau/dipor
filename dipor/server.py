@@ -5,7 +5,7 @@ import os
 
 PORT = 5050
 
-def runserver(public_folder):
+def runserver():
     web_dir = os.path.join(os.path.dirname(__file__), 'public')
     os.chdir(web_dir)
     class CustomHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
