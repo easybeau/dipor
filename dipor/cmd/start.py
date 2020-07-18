@@ -3,7 +3,7 @@ import shutil
 import os
 import sys
 import dipor
-from dipor.main import mainap
+from dipor.main import builder
 
 '''
 MAIN FUNCTIONS -
@@ -104,13 +104,13 @@ def copy_quickstart_content(src_root, dst_root):
             elif override in ["n", "N", "no"]:
                 pass
 
-def build_public():
+def build_public(src_path, content_path):
     '''
     Assumes that /src and /content already exist
     In the Destination Directory
     And Builds the Public Directory
     '''
-    mainap()
+    builder(src_path, content_path)
 
 def serve_public():
     pass
@@ -126,11 +126,8 @@ def quickstart(*args, **kwargs):
     print("Getting the settings file...")
     copy_quickstart_settings(src_root, dst_root)
     print("Building the /public repo")
-    try:
-        build_public()
-    except:
-        print("fine ok")
-    serve_public()
+    build_public(os.path.join(dst_root, 'src'), os.path.join(dst_root, 'content'))
+    serve_public(os.path.join(dst_root, 'public'))
 
 def bigbang(*args, **kwargs):
     print("running bigbang")

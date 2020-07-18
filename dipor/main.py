@@ -80,8 +80,7 @@ def get_total_context(initial_context, current_context):
     return total_ctx
 
 
-def main(current_app_path, current_app_name, current_content_path, initial_context={'common': {}}, is_branch=False):
-    current_app_name = current_app_name.strip("/")
+def builder(current_app_path, current_content_path, initial_context={'common': {}}, is_branch=False):
     if is_branch:
         content_branch_dirs = get_content_branch_dirs(current_app_path)
         for dir_path in content_branch_dirs:
@@ -131,15 +130,3 @@ def main(current_app_path, current_app_name, current_content_path, initial_conte
             main(next_src_path, subapp, next_content_path, initial_context=next_context)
 
     return
-
-
-def mainap():
-    allowed_extensions = ['md', 'json']
-    print("--------- dipor is starting ---------")
-    main(settings.SOURCE_ROOT, settings.INITIALL_APP, settings.CONTENT_ROOT)
-    print("--------- dipor is ending ---------")
-
-    # todo: make subapps names availale to context
-
-if __name__ == '__main__':
-    mainap()
