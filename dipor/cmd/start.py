@@ -270,7 +270,7 @@ class EntryPointCommands:
         self.copy_file(self.src_root, self.dst_root, "settings.py")
         print("Building the /public repo")
         self.build_public(os.path.join(self.dst_root, 'src'), os.path.join(self.dst_root, 'content'))
-        self.serve_public(os.path.join())
+        self.serve_public()
 
     def bigbang(self, *args, **kwargs):
         print("running bigbang")
