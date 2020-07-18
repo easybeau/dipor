@@ -4,6 +4,7 @@ import os
 import sys
 import dipor
 from dipor.main import builder
+from dipor.server import runserver
 
 '''
 MAIN FUNCTIONS -
@@ -112,8 +113,8 @@ def build_public(src_path, content_path):
     '''
     builder(src_path, content_path)
 
-def serve_public():
-    pass
+def serve_public(public_path):
+    runserver(public_path)
 
 def quickstart(*args, **kwargs):
     print ("running quikcstart")
@@ -183,6 +184,4 @@ def call_action(args):
 
 def main():
     args = sys.argv
-    print(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                              "templates"))
     call_action(args[1:])
