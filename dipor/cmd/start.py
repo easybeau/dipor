@@ -30,12 +30,22 @@ def copy_quickstart_src(src_root, dst_root):
             if os.path.exists(os.path.join(dst_root, 'src')) and os.path.isdir(os.path.join(dst_root, 'src')):
                 shutil.rmtree(os.path.join(dst_root, 'src'))
                 copy_quickstart_src(src_root, dst_root)
-                print("The srcb directory was overriden.")
+                print("The `src` directory was overriden.")
         elif override in ["n", "N"]:
             pass
 
 def copy_quickstart_content(src_root, dst_root):
-    shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dst_root, 'content'))
+    try:
+        shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dst_root, 'content'))
+    except FileExistsError:
+        override = input("Hey, looks like a `content` directory already exists, do you want to override the src directory (Y/n): ")
+        if override in ["Y", "y", ""]:
+            if os.path.exists(os.path.join(dst_root, 'content')) and os.path.isdir(os.path.join(dst_root, 'content')):
+                shutil.rmtree(os.path.join(dst_root, 'content'))
+                copy_quickstart_src(src_root, dst_root)
+                print("The `src` directory was overriden.")
+        elif override in ["n", "N"]:
+            pass
 
 def build_public():
     pass
