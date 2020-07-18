@@ -21,11 +21,11 @@ def get_src_root():
 def get_dst_root():
     return pathlib.Path().absolute()
 
-def copy_quickstart_src():
-    shutil.copytree(os.path.join(src_root, 'src'), os.path.join(dest_root, 'src'))
+def copy_quickstart_src(src_root, dst_root):
+    shutil.copytree(os.path.join(src_root, 'src'), os.path.join(dst_root, 'src'))
 
-def copy_quickstart_content():
-    shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dest_root, 'content'))
+def copy_quickstart_content(src_root, dst_root):
+    shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dst_root, 'content'))
 
 def build_public():
     pass
@@ -37,8 +37,8 @@ def quickstart(*args, **kwargs):
     print ("running quikcstart")
     src_root = get_src_root()
     dst_root = get_dst_root()
-    copy_quickstart_src()
-    copy_quickstart_content()
+    copy_quickstart_src(src_root, dst_root)
+    copy_quickstart_content(src_root, dst_root)
     try:
         build_public()
     except:
