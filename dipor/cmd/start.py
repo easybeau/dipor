@@ -80,7 +80,7 @@ class EntryPointCommands:
             if override in ["Y", "y", "", "yes"]:
                 if os.path.exists(os.path.join(dst, dir)) and os.path.isdir(os.path.join(dst, dir)):
                     shutil.rmtree(os.path.join(dst, dir))
-                    copy_tree(src, dst)
+                    self.copy_tree(src, dst)
                     print(f"The `{dir}` directory was overriden.")
             elif override in ["n", "N", "no"]:
                 pass
@@ -89,7 +89,7 @@ class EntryPointCommands:
                 if override in ["Y", "y", "yes", ""]:
                     if os.path.exists(os.path.join(dst, dir)) and os.path.isdir(os.path.join(dst, dir)):
                         shutil.rmtree(os.path.join(dst, dir))
-                        copy_tree(src, dst)
+                        self.copy_tree(src, dst)
                         print(f"The `{dir}` directory was overriden.")
                 elif override in ["n", "N", "no"]:
                     pass
