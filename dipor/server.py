@@ -24,8 +24,10 @@ def runserver():
     socketserver.TCPServer.allow_reuse_address = True
 
     with socketserver.TCPServer(("", PORT), handler) as httpd:
-        print("server is running...")
+        print("server is revving up...")
         httpd.serve_forever()
-        webbrowser.open(f"localhost:{PORT}")
+        print("woohoo! check out this awesome page @ localhost:5050")
+        print("you can keep track of your requests here")
+        print("see you on the actual url next time :)")
 
 
