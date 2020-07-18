@@ -32,7 +32,7 @@ def copy_quickstart_settings(src_root, dst_root):
     Copy the Quickstart Settings to Destination Root
     '''
     try:
-        shutil.copytree(os.path.join(src_root, 'settings.py'), os.path.join(dst_root, 'settings.py'))
+        shutil.copy(os.path.join(src_root, 'settings.py'), os.path.join(dst_root, 'settings.py'))
     except FileExistsError:
         override = input("Hey, looks like a `settings` file already exists, do you want to override the src directory (Y/n): ")
         if override in ["Y", "y", ""]:
@@ -44,13 +44,13 @@ def copy_quickstart_settings(src_root, dst_root):
             pass
         else:
             override = input("The available options are: [Y/y/yes]/[N/n/no]. Press Enter to default to Y: ")
-        if override in ["Y", "y", "yes", ""]:
-            if os.path.exists(os.path.join(dst_root, 'settings.py')) and os.path.isdir(os.path.join(dst_root, 'settings.py')):
-                os.remove(os.path.join(dst_root, 'settings.py'))
-                copy_quickstart_settings(src_root, dst_root)
-                print("The `settings` file was overriden.")
-        elif override in ["n", "N", "no"]:
-            pass
+            if override in ["Y", "y", "yes", ""]:
+                if os.path.exists(os.path.join(dst_root, 'settings.py')) and os.path.isdir(os.path.join(dst_root, 'settings.py')):
+                    os.remove(os.path.join(dst_root, 'settings.py'))
+                    copy_quickstart_settings(src_root, dst_root)
+                    print("The `settings` file was overriden.")
+            elif override in ["n", "N", "no"]:
+                pass
 
 
 def copy_quickstart_src(src_root, dst_root):
@@ -70,13 +70,13 @@ def copy_quickstart_src(src_root, dst_root):
             pass
         else:
             override = input("The available options are: [Y/y/yes]/[N/n/no]. Press Enter to default to Y: ")
-        if override in ["Y", "y", "yes", ""]:
-            if os.path.exists(os.path.join(dst_root, 'src')) and os.path.isdir(os.path.join(dst_root, 'src')):
-                shutil.rmtree(os.path.join(dst_root, 'src'))
-                copy_quickstart_src(src_root, dst_root)
-                print("The `src` directory was overriden.")
-        elif override in ["n", "N", "no"]:
-            pass
+            if override in ["Y", "y", "yes", ""]:
+                if os.path.exists(os.path.join(dst_root, 'src')) and os.path.isdir(os.path.join(dst_root, 'src')):
+                    shutil.rmtree(os.path.join(dst_root, 'src'))
+                    copy_quickstart_src(src_root, dst_root)
+                    print("The `src` directory was overriden.")
+            elif override in ["n", "N", "no"]:
+                pass
 
 def copy_quickstart_content(src_root, dst_root):
     '''
