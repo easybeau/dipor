@@ -31,6 +31,7 @@ def get_current_context(dir_path):
 
 def load_template(tpl_path):
     print(Path(os.path.dirname(tpl_path)).parent)
+    print(tpl_path)
     env = RelEnvironment(loader=FileSystemLoader(Path(os.path.dirname(tpl_path)).parent, 'src'), undefined=SilentUndefined, extensions=[RoutesExtension])
     env.globals.update(zip=zip)
     template =  env.get_template(tpl_path)
