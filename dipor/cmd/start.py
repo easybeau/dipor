@@ -93,15 +93,15 @@ def copy_quickstart_content(src_root, dst_root):
                 print("The `content` directory was overriden.")
         elif override in ["n", "N", "no"]:
             pass
-    else:
-        override = input("The available options are: [Y/y/yes]/[N/n/no]. Press Enter to default to Y: ")
-        if override in ["Y", "y", "yes", ""]:
-            if os.path.exists(os.path.join(dst_root, 'content')) and os.path.isdir(os.path.join(dst_root, 'content')):
-                shutil.rmtree(os.path.join(dst_root, 'content'))
-                copy_quickstart_content(src_root, dst_root)
-                print("The `content` directory was overriden.")
-        elif override in ["n", "N", "no"]:
-            pass
+        else:
+            override = input("The available options are: [Y/y/yes]/[N/n/no]. Press Enter to default to Y: ")
+            if override in ["Y", "y", "yes", ""]:
+                if os.path.exists(os.path.join(dst_root, 'content')) and os.path.isdir(os.path.join(dst_root, 'content')):
+                    shutil.rmtree(os.path.join(dst_root, 'content'))
+                    copy_quickstart_content(src_root, dst_root)
+                    print("The `content` directory was overriden.")
+            elif override in ["n", "N", "no"]:
+                pass
 
 def build_public():
     '''
