@@ -114,7 +114,7 @@ def build_public(src_path, content_path):
     builder_main(src_path, content_path)
 
 def serve_public(public_path):
-    runserver(public_path)
+    runserver()
 
 def quickstart(*args, **kwargs):
     print ("running quikcstart")
