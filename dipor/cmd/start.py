@@ -16,12 +16,47 @@ MAIN FUNCTIONS -
 '''
 
 def get_src_root():
+    '''
+    Get the Root Directory for the Source
+    '''
     return os.path.dirname(dipor.__file__)
 
 def get_dst_root():
+    '''
+    Get the Root Directory for the Destination
+    '''
     return pathlib.Path().absolute()
 
+def copy_quickstart_settings(src_root, dst_root):
+    '''
+    Copy the Quickstart Settings to Destination Root
+    '''
+    try:
+        shutil.copytree(os.path.join(src_root, 'settings.py'), os.path.join(dst_root, 'settings.py'))
+    except FileExistsError:
+        override = input("Hey, looks like a `settings` file already exists, do you want to override the src directory (Y/n): ")
+        if override in ["Y", "y", ""]:
+            if os.path.exists(os.path.join(dst_root, 'settings.py')):
+                os.remove(os.path.join(dst_root, 'settings.py'))
+                copy_quickstart_settings(src_root, dst_root)
+                print("The `settings` file was overriden.")
+        elif override in ["n", "N"]:
+            pass
+        else:
+            override = input("The available options are: [Y/y/yes]/[N/n/no]. Press Enter to default to Y: ")
+        if override in ["Y", "y", "yes", ""]:
+            if os.path.exists(os.path.join(dst_root, 'settings.py')) and os.path.isdir(os.path.join(dst_root, 'settings.py')):
+                os.remove(os.path.join(dst_root, 'settings.py'))
+                copy_quickstart_settings(src_root, dst_root)
+                print("The `settings` file was overriden.")
+        elif override in ["n", "N", "no"]:
+            pass
+
+
 def copy_quickstart_src(src_root, dst_root):
+    '''
+    Copy the Quickstart Source Directory to Destination Root
+    '''
     try:
         shutil.copytree(os.path.join(src_root, 'src'), os.path.join(dst_root, 'src'))
     except FileExistsError:
@@ -33,21 +68,47 @@ def copy_quickstart_src(src_root, dst_root):
                 print("The `src` directory was overriden.")
         elif override in ["n", "N"]:
             pass
+        else:
+            override = input("The available options are: [Y/y/yes]/[N/n/no]. Press Enter to default to Y: ")
+        if override in ["Y", "y", "yes", ""]:
+            if os.path.exists(os.path.join(dst_root, 'src')) and os.path.isdir(os.path.join(dst_root, 'src')):
+                shutil.rmtree(os.path.join(dst_root, 'src'))
+                copy_quickstart_src(src_root, dst_root)
+                print("The `src` directory was overriden.")
+        elif override in ["n", "N", "no"]:
+            pass
 
 def copy_quickstart_content(src_root, dst_root):
+    '''
+    Copy the Quickstart Content Directory to Destination Root
+    '''
     try:
         shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dst_root, 'content'))
     except FileExistsError:
         override = input("Hey, looks like a `content` directory already exists, do you want to override the src directory (Y/n): ")
-        if override in ["Y", "y", ""]:
+        if override in ["Y", "y", "yes", ""]:
             if os.path.exists(os.path.join(dst_root, 'content')) and os.path.isdir(os.path.join(dst_root, 'content')):
                 shutil.rmtree(os.path.join(dst_root, 'content'))
                 copy_quickstart_content(src_root, dst_root)
-                print("The `src` directory was overriden.")
-        elif override in ["n", "N"]:
+                print("The `content` directory was overriden.")
+        elif override in ["n", "N", "no"]:
+            pass
+    else:
+        override = input("The available options are: [Y/y/yes]/[N/n/no]. Press Enter to default to Y: ")
+        if override in ["Y", "y", "yes", ""]:
+            if os.path.exists(os.path.join(dst_root, 'content')) and os.path.isdir(os.path.join(dst_root, 'content')):
+                shutil.rmtree(os.path.join(dst_root, 'content'))
+                copy_quickstart_content(src_root, dst_root)
+                print("The `content` directory was overriden.")
+        elif override in ["n", "N", "no"]:
             pass
 
 def build_public():
+    '''
+    Assumes that /src and /content already exist
+    In the Destination Directory
+    And Builds the Public Directory
+    '''
     pass
 
 def serve_public():
@@ -58,8 +119,8 @@ def quickstart(*args, **kwargs):
     src_root = get_src_root()
     dst_root = get_dst_root()
     copy_quickstart_src(src_root, dst_root)
-
     copy_quickstart_content(src_root, dst_root)
+    copy_quickstart_settings(src_root, dst_root)
     try:
         build_public()
     except:
