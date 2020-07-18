@@ -3,7 +3,7 @@ import shutil
 import os
 import sys
 import dipor
-from dipor.main import builder
+from dipor.main import builder_main
 from dipor.server import runserver
 
 '''
@@ -111,7 +111,7 @@ def build_public(src_path, content_path):
     In the Destination Directory
     And Builds the Public Directory
     '''
-    builder(src_path, content_path)
+    builder_main(src_path, content_path)
 
 def serve_public(public_path):
     runserver(public_path)
