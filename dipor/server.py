@@ -15,10 +15,13 @@ def runserver(public_folder):
             print(self.public)
             path = self.path.strip('/')
             print(path)
-            for file in listdir(self.public):
-                print(file)
-                if file == path and os.path.isdir(os.path.join(self.public, file)):
-                    self.path = os.path.join(self.public, file, "index.html")
+            if path == "":
+                self.path = os.path.join(self.public, 'index.html')
+            else:
+                for file in listdir(self.public):
+                    print(file)
+                    if file == path and os.path.isdir(os.path.join(self.public, file)):
+                        self.path = os.path.join(self.public, file, "index.html")
 
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
     handler = CustomHttpRequestHandler
