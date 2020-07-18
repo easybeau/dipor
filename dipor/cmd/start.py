@@ -183,4 +183,6 @@ def call_action(args):
 
 def main():
     args = sys.argv
+    print(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "templates"))
     call_action(args[1:])
