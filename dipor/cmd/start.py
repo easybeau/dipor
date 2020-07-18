@@ -33,7 +33,8 @@ def build_public():
 def serve_public():
     pass
 
-def quickstart():
+def quickstart(*args, **kwargs):
+    print ("running quikcstart")
     src_root = get_src_root()
     dst_root = get_dst_root()
     try:
@@ -50,37 +51,39 @@ def quickstart():
         print("fine ok")
     serve_public()
 
-def bigbang():
+def bigbang(*args, **kwargs):
+    print("running bigbang")
     # create src
     # create content
     # create settings
     # create a hello dipor barren page
     # build to create single page
-    pass
 
-def use():
+def use(*args, **kwargs):
+    print("running use")
     # download the repo to current directory
     # build it serve it
-    pass
 
-def dev():
+def soft_build(*args, **kwargs):
+    print("running dev")
     # get the content
     # get the src
     # convert to public
-    pass
 
-def build():
+def hard_build(*args, **kwargs):
+    print("running build")
     # clean the public folder
     # get the directories
     # convert to public
     # do post-processing (prettify/compress/make static easily available)
     # do an accessibility check
     # serve
-    pass
 
-def default_action():
-    pass
+def default_action(*args, **kwargs):
+    print("running default action")
 
+def use_theme(*args, **kwargs):
+    print("running use theme")
 
 # def main():
 #     # src_root = pathlib.Path(__file__).parent.absolute()
