@@ -13,8 +13,8 @@ def runserver():
     class CustomHttpRequestHandler(http.server.SimpleHTTPRequestHandler):            
         def do_GET(self):
             path = self.path.strip('/')
-                if os.path.isfile(os.path.join(web_dir, path+".html")):
-                    self.path = path+".html"
+            if os.path.isfile(os.path.join(web_dir, path+".html")):
+                self.path = path+".html"
                 
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
     handler = CustomHttpRequestHandler
