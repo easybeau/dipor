@@ -60,7 +60,7 @@ def get_content_branch_dirs(current_app_path, src_path):
     branch_dirs = []
     print("!!!!!!")
     current_content_path = os.path.join('content', os.path.relpath(current_app_path, src_path))
-    print)current_content_path
+    print(current_content_path)
     # current_content_path = 'content' + current_app_path[3:]
     for file in os.listdir(current_content_path):
         if os.path.isdir(os.path.join(current_content_path, file)):
