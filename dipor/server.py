@@ -22,9 +22,10 @@ def runserver():
 
     with socketserver.TCPServer(("", PORT), handler) as httpd:
         print("server is revving up...")
-        httpd.serve_forever()
         print("woohoo! check out this awesome page @ localhost:5050")
         print("you can keep track of your requests here")
         print("see you on the actual url next time :)")
+        webbrowser.open(f"http://localhost:{PORT}")
+        httpd.serve_forever()
 
 
