@@ -12,8 +12,11 @@ def runserver(public_folder):
             super(CustomHttpRequestHandler, self).__init__(*args, **kwargs)
             
         def do_GET(self):
+            print(self.public)
             path = self.path.strip('/')
+            print(path)
             for file in listdir(self.public):
+                print(file)
                 if file == path and os.path.isdir(os.path.join(self.public, file)):
                     self.path = os.path.join(self.public, file, "index.html")
 
