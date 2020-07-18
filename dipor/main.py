@@ -121,7 +121,7 @@ def builder(current_app_path, current_content_path, initial_context={'common': {
         next_src_path = os.path.join(current_app_path, '_branches')
         next_context = {'common': total_ctx['common']}
         next_content_path = os.path.join(current_content_path, '_branches')
-        builder(next_src_path, '_branches', next_content_path, initial_context=next_context, is_branch=True)
+        builder(next_src_path, next_content_path, initial_context=next_context, is_branch=True)
 
     subapps = get_subapps(current_app_path)
     if subapps:
@@ -129,6 +129,6 @@ def builder(current_app_path, current_content_path, initial_context={'common': {
             next_src_path = os.path.join(current_app_path, subapp)
             next_context = {'common': total_ctx['common']}
             next_content_path = os.path.join(current_content_path, subapp)
-            builder(next_src_path, subapp, next_content_path, initial_context=next_context)
+            builder(next_src_path, next_content_path, initial_context=next_context)
 
     return
