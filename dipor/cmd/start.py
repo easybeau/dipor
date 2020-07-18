@@ -22,7 +22,17 @@ def get_dst_root():
     return pathlib.Path().absolute()
 
 def copy_quickstart_src(src_root, dst_root):
-    shutil.copytree(os.path.join(src_root, 'src'), os.path.join(dst_root, 'src'))
+    try:
+        shutil.copytree(os.path.join(src_root, 'src'), os.path.join(dst_root, 'src'))
+    except FileExistsError:
+        override = input("Hey, looks like a `src` directory already exists, do you want to override the src directory (Y/n): ")
+        if override in ["Y", "y", ""]:
+            if os.path.exists(os.path.join(dst_root, 'src')) and os.path.isdir(os.path.join(dst_root, 'src')):
+                shutil.rmtree(os.path.join(dst_root, 'src'))
+                copy_quickstart_src(src_root, dst_root)
+                print("The srcb directory was overriden.")
+        elif override in ["n", "N"]:
+            pass
 
 def copy_quickstart_content(src_root, dst_root):
     shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dst_root, 'content'))
@@ -38,6 +48,7 @@ def quickstart(*args, **kwargs):
     src_root = get_src_root()
     dst_root = get_dst_root()
     copy_quickstart_src(src_root, dst_root)
+
     copy_quickstart_content(src_root, dst_root)
     try:
         build_public()
