@@ -200,7 +200,7 @@ class EntryPointCommands:
         
 
     def call_action(self, action, ac_parameters):
-        action_fn = self.ARGS_ACTIONS_MAP.get(action, default_action)
+        action_fn = self.ARGS_ACTIONS_MAP.get(action, self.default_action)
         action_fn(ac_parameters)
 
 
