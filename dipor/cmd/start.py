@@ -78,8 +78,8 @@ def build():
     # serve
     pass
 
-
-
+def default_action():
+    pass
 
 
 # def main():
@@ -89,6 +89,17 @@ def build():
 #     shutil.copytree(os.path.join(src_root, 'content'), os.path.join(dest_root, 'content'))
 #     shutil.copytree(os.path.join(src_root, 'src'), os.path.join(dest_root, 'src'))
 #     mainap()
+def call_action(args):
+    ARGS_ACTIONS_MAP = {'quickstart': quickstart,
+                        'bigbang': bigbang,
+                        'use': use_theme,
+                        'dev': soft_build,
+                        'build': hard_build}
+    action = args[1]    # when only dipor is given, what should we do?
+    action_fn = ARGS_ACTIONS_MAP.get(action, default_action)
+    action_fn()
+
 
 def main():
-    print(sys.argv)
+    args = sys.argv
+    call_action(args[1:])
