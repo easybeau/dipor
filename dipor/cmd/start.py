@@ -183,13 +183,13 @@ MAIN FUNCTIONS -
 
 class EntryPointCommands:
 
-    ARGS_ACTIONS_MAP = {'quickstart': self.quickstart,
+    def __init__(self, args):
+        self.ARGS_ACTIONS_MAP = {'quickstart': self.quickstart,
                         'bigbang': self.bigbang,
                         'use': self.use_theme,
                         'dev': self.soft_build,
                         'build': self.hard_build}
 
-    def __init__(self, args):
         self.src_root = self.get_src_root
         self.dst_root = self.get_dst_root
 
@@ -200,7 +200,7 @@ class EntryPointCommands:
         
 
     def call_action(self, action, ac_parameters):
-        action_fn = ARGS_ACTIONS_MAP.get(action, default_action)
+        action_fn = self.ARGS_ACTIONS_MAP.get(action, default_action)
         action_fn(ac_parameters)
 
 
