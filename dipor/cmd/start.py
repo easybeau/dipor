@@ -42,7 +42,7 @@ def copy_quickstart_content(src_root, dst_root):
         if override in ["Y", "y", ""]:
             if os.path.exists(os.path.join(dst_root, 'content')) and os.path.isdir(os.path.join(dst_root, 'content')):
                 shutil.rmtree(os.path.join(dst_root, 'content'))
-                copy_quickstart_src(src_root, dst_root)
+                copy_quickstart_content(src_root, dst_root)
                 print("The `src` directory was overriden.")
         elif override in ["n", "N"]:
             pass
