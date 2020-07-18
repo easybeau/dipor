@@ -37,14 +37,8 @@ def quickstart(*args, **kwargs):
     print ("running quikcstart")
     src_root = get_src_root()
     dst_root = get_dst_root()
-    try:
-        copy_quickstart_src()
-    except:
-        print("exception man")
-    try:
-        copy_quickstart_content()
-    except:
-        print("exception again man")
+    copy_quickstart_src()
+    copy_quickstart_content()
     try:
         build_public()
     except:
