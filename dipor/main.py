@@ -138,7 +138,7 @@ def builder(current_app_path, current_content_path, initial_context={'common': {
 
 
 
-builder_main(current_app_path, current_content_path, initial_context={'common': {}}, is_branch=False):
+def builder_main(current_app_path, current_content_path, initial_context={'common': {}}, is_branch=False):
     global src_path
     global content_path
     src_path = current_app_path
