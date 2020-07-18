@@ -13,9 +13,6 @@ def runserver():
     class CustomHttpRequestHandler(http.server.SimpleHTTPRequestHandler):            
         def do_GET(self):
             path = self.path.strip('/')
-            if path == "":
-                self.path = os.path.join(web_dir, 'index.html')
-            else:
                 if os.path.isfile(os.path.join(web_dir, path+".html")):
                     self.path = path+".html"
                 
