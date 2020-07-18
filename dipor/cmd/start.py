@@ -118,9 +118,13 @@ def quickstart(*args, **kwargs):
     print ("running quikcstart")
     src_root = get_src_root()
     dst_root = get_dst_root()
+    print("Getting the /src directory...")
     copy_quickstart_src(src_root, dst_root)
+    print("Getting the /content directory...")
     copy_quickstart_content(src_root, dst_root)
+    print("Getting the settings file...")
     copy_quickstart_settings(src_root, dst_root)
+    print("Building the /public repo")
     try:
         build_public()
     except:
