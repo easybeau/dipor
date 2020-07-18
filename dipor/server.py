@@ -12,13 +12,13 @@ def runserver():
         def do_GET(self):
             path = self.path.strip('/')
             if path == "":
-                self.path = os.path.join(self.public, 'index.html')
-            # else:
-            #     for file in listdir(self.public):
-            #         if file == path and os.path.isdir(os.path.join(self.public, file)):
-            #             print(path, "-->", os.path.join(self.public, file, "index.html"))
-            #             self.path = os.path.join(self.public, file, "index.html")
-
+                self.path = os.path.join(web_dir, 'index.html')
+            else:
+                if os.path.isfile(os.path.join(web_dir, path+".html")):
+                    self.path = os.path.join(web_dir, path+".html")
+                elif os.path.isfile(os.path.join(web_dir, path, "index.html")):
+                    self.path = os.path.join(web_dir, path, "index.html")
+                
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
     handler = CustomHttpRequestHandler
     socketserver.TCPServer.allow_reuse_address = True
