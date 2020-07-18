@@ -8,7 +8,7 @@ PORT = 5050
 def runserver(public_folder):
     class CustomHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
-            super(CustomHandler, self).__init__(*args, **kwargs)
+            super(CustomHttpRequestHandler, self).__init__(*args, **kwargs)
             self.public = public_folder
         def do_GET(self):
             path = self.path.strip('/')
