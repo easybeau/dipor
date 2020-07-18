@@ -260,7 +260,7 @@ class EntryPointCommands:
                 elif override in ["n", "N", "no"]:
                     pass
  
-    def quickstart(*args, **kwargs):
+    def quickstart(self, *args, **kwargs):
         print ("running quikcstart")
         print("Getting the /src directory...")
         self.copy_tree(self.src_root, self.dst_root, 'src')
