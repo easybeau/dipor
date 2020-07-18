@@ -4,6 +4,7 @@ from os import listdir
 import os
 import pathlib
 from dipor import settings
+from pathlib import Path
 
 from dipor.readers.markdown import MarkdownReader
 from dipor.utils.context import get_structural_context
@@ -29,7 +30,7 @@ def get_current_context(dir_path):
     
 
 def load_template(tpl_path):
-    env = RelEnvironment(loader=FileSystemLoader(os.path.dirname(tpl_path)), undefined=SilentUndefined, extensions=[RoutesExtension])
+    env = RelEnvironment(loader=FileSystemLoader(Path(os.path.dirname(tpl_path)).parent, os.path.dirname(tpl_path)), undefined=SilentUndefined, extensions=[RoutesExtension])
     env.globals.update(zip=zip)
     template =  env.get_template(tpl_path)
     return template
