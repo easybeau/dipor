@@ -3,6 +3,7 @@ import socketserver
 from os import listdir
 import os
 import pathlib
+import webbrowser
 
 PORT = 5050
 
@@ -16,7 +17,6 @@ def runserver():
                 self.path = os.path.join(web_dir, 'index.html')
             else:
                 if os.path.isfile(os.path.join(web_dir, path+".html")):
-                    print(os.path.join(web_dir, path+".html"))
                     self.path = path+".html"
                 
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
@@ -26,5 +26,6 @@ def runserver():
     with socketserver.TCPServer(("", PORT), handler) as httpd:
         print("server is running...")
         httpd.serve_forever()
+        webbrowser.open(f"localhost:{PORT}")
 
 
